@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
+import Header from './Header';
 
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -105,10 +106,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div
+    
+    <div>
+      <Header/>
+      <div
       className="dashboard"
       style={{
-        maxWidth: 600,
+        maxWidth: 1000,
         margin: "2rem auto",
         padding: "1rem",
         background: "#fff",
@@ -116,6 +120,7 @@ const Dashboard = () => {
         boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
       }}
     >
+      
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
         <div>
           <h4 style={{ color: 'black' }}>Welcome, {user.name} ({user.email})</h4>
@@ -189,6 +194,7 @@ const Dashboard = () => {
           ))}
         </ul>
       )}
+    </div>
     </div>
   );
 };

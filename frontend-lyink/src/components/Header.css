@@ -1,0 +1,85 @@
+/* src/components/Header.css */
+
+/* Full width sticky header */
+.app-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Flex container */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Brand / Logo */
+.header-logo a {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.header-nav a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s;
+}
+
+.header-nav a:hover {
+  color: var(--color-primary);
+}
+
+/* Right side user info */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.header-user {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Logout button */
+.btn-logout {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.btn-logout:hover {
+  background-color: #a2232f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-nav {
+    gap: 0.8rem;
+  }
+  .header-container {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}

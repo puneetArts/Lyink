@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../contexts/AuthContext";
+import Header from './Header';
 
 const FriendList = () => {
   const { user } = useContext(AuthContext);
@@ -37,12 +38,16 @@ const FriendList = () => {
 
   return (
     <div>
+      <Header/>
+      
+              <div>
       <h3>Your Friends</h3>
       <ul>
         {friends.map(f => (
           <li key={f._id}>{f.name} ({f.email})</li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

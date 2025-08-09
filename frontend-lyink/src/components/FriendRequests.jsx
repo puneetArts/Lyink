@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../contexts/AuthContext";
+import Header from './Header';
 
 const FriendRequests = () => {
   const { user } = useContext(AuthContext);
@@ -30,10 +31,12 @@ const FriendRequests = () => {
     }
   };
 
-  if (!requests.length) return <p>No pending friend requests</p>;
+  if (!requests.length) return <div><Header/><p>No pending friend requests</p></div>;
 
   return (
     <div>
+      <Header/>
+      <div>
       <h3>Friend Requests</h3>
       {requests.map(r => (
         <div key={r._id} style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
@@ -45,6 +48,7 @@ const FriendRequests = () => {
         </div>
       ))}
       {msg && <p>{msg}</p>}
+    </div>
     </div>
   );
 };

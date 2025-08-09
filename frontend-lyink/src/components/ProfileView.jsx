@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import './ProfileView.css';  // in ProfileView.js
-
+import Header from './Header';
 
 const ProfileView = () => {
   const { id } = useParams();
@@ -23,7 +23,9 @@ const ProfileView = () => {
   if (!profile) return <p>Loading...</p>;
 
   return (
-    <div className="profile-view" style={{ maxWidth: 500, margin: '2rem auto', padding: '1rem', background: '#fff', borderRadius: 8 }}>
+    <div>
+      <Header/>
+      <div className="profile-view" style={{ maxWidth: 500, margin: '2rem auto', padding: '1rem', background: '#fff', borderRadius: 8 }}>
       <h2>{profile.name}</h2>
       {profile.profilePic && (
         <img src={profile.profilePic} alt="Profile" style={{ width: 120, borderRadius: '50%' }} />
@@ -41,6 +43,7 @@ const ProfileView = () => {
 )}
 
 
+    </div>
     </div>
   );
 };

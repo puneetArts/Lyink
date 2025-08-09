@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import './ProfileEdit.css';  // in ProfileEdit.js
+import Header from './Header';
 
 
 const ProfileEdit = () => {
@@ -68,7 +69,10 @@ const ProfileEdit = () => {
   };
 
   return (
-    <div className="profile-edit" style={{ maxWidth: 500, margin: '2rem auto', padding: '1rem', background: '#fff', borderRadius: 8 }}>
+    <div>
+      <Header/>
+      <div className="profile-edit" style={{ maxWidth: 500, margin: '2rem auto', padding: '1rem', background: '#fff', borderRadius: 8 }}>
+      
       <h2>Edit Profile</h2>
       {msg && <p>{msg}</p>}
 
@@ -95,6 +99,7 @@ const ProfileEdit = () => {
       </form>
 
       <button onClick={handleLogout} style={{ marginTop: 15, backgroundColor: '#dc3545', color: 'white', border: 'none', padding: '8px 12px', borderRadius: 4 }}>Logout</button>
+    </div>
     </div>
   );
 };
