@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,500&display=swap');
+
+.profile-view {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: var(--color-bg);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+/* Heading */
+.profile-view h2 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Profile Picture */
+.profile-view img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  border: 3px solid var(--color-primary);
+}
+
+/* Profile info fields */
+.profile-view p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: var(--color-bg-variant);
+  font-weight: 500;
+}
+
+/* Labels bold */
+.profile-view p b {
+  color: var(--color-primary);
+}
+
+/* Edit Profile Link/Button */
+.profile-view .edit-profile-link {
+  margin-top: 1.5rem;
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: 5px;
+  font-weight: 600;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.profile-view .edit-profile-link:hover {
+  background-color: var(--color-bg-variant);
+  color: var(--color-primary);
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .profile-view {
+    padding: 1.5rem 1.8rem;
+    width: 90%;
+  }
+}

@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,500&display=swap');
+
+.profile-edit {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: var(--color-bg);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Heading */
+.profile-edit h2 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Messages */
+.profile-edit p {
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* Form fields */
+.profile-edit form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.profile-edit label {
+  font-weight: 600;
+  color: var(--color-bg-variant);
+}
+
+.profile-edit input,
+.profile-edit textarea {
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1.5px solid var(--color-bg-variant);
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.profile-edit input:focus,
+.profile-edit textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-primary);
+  background-color: #fefaf6;
+  color: var(--color-bg);
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  resize: vertical;
+}
+
+/* Textarea resize */
+.profile-edit textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Submit button */
+.profile-edit button[type="submit"] {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  width: 50%;
+}
+
+.profile-edit button[type="submit"]:hover {
+  background-color: var(--color-bg-variant);
+  color: var(--color-primary);
+}
+
+/* Logout button */
+.profile-edit .logout-btn {
+  margin-top: 1.5rem;
+  cursor: pointer;
+  background-color: var(--color-bg-variant);
+  color: var(--color-primary);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 100%;
+}
+
+.profile-edit .logout-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .profile-edit {
+    width: 90%;
+    padding: 1.5rem;
+  }
+  
+  .profile-edit button[type="submit"] {
+    width: 100%;
+  }
+}
