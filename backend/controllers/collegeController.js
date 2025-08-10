@@ -6,9 +6,9 @@ exports.getColleges = async (req, res) => {
 };
 
 // For seeding colleges (can remove later)
-// exports.addCollege = async (req, res) => {
-//   const { name, domain } = req.body;
-//   const college = new College({ name, domain });
-//   await college.save();
-//   res.json(college);
-// };
+exports.addCollege = async (req, res) => {
+  const { name, domain } = req.body;
+  const college = new College({ name, domain });
+  await college.save();
+  res.json(college);
+};

@@ -28,13 +28,19 @@ const ProfileView = () => {
       <div className="profile-view" style={{ maxWidth: 500, margin: '2rem auto', padding: '1rem', background: '#fff', borderRadius: 8 }}>
       <h2>{profile.name}</h2>
       {profile.profilePic && (
-        <img src={profile.profilePic} alt="Profile" style={{ width: 120, borderRadius: '50%' }} />
+      <img
+  src={`http://localhost:5000${profile.profilePic}`}
+  alt="Profile"
+  style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover' }}
+
+/>
+
       )}
       <p><b>Email:</b> {profile.email}</p>
       <p><b>College:</b> {profile.college?.name}</p>
       <p><b>Bio:</b> {profile.bio || 'N/A'}</p>
       <p><b>Major:</b> {profile.major || 'N/A'}</p>
-      <p><b>Year:</b> {profile.year || 'N/A'}</p>
+      <p><b>Batch:</b> {profile.year || 'N/A'}</p>
       <p><b>Interests:</b> {profile.interests && profile.interests.length ? profile.interests.join(', ') : 'N/A'}</p>
 
       {/* Link to your own profile edit if viewing self */}

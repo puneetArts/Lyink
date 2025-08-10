@@ -106,39 +106,63 @@ const Dashboard = () => {
   };
 
   return (
-    
-    <div>
-      <Header/>
-      <h3 style={{ color: 'white' }}>Welcome, {user.name} ({user.email})</h3>
-      <div
-      className="dashboard"
-      style={{
-        maxWidth: "85%",
-        display:"flex",
-        margin: "2rem auto",
-        padding: "1rem",
-        background: "#1b263b",
-        borderRadius: 8,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
-      }}
-    >
-      
-      <div className='my-profile-section' >
-        <div >
-          
-          {/* Link to Edit Profile for logged-in user */}
-          <Link to="/edit-profile" style={{ marginRight: '1rem', textDecoration: 'none' }} title="Edit your profile">
-            <button className='btn-profile'>Edit Profile</button>
-          </Link>
-          {/* Link to Friend Requests */}
-          <Link to="/friend-requests" style={{ textDecoration: "none" }}>
-            <button className='btn-profile' title="View your received friend requests">
-              Friend Requests ({receivedRequestsCount})
-            </button>
-          </Link>
-        </div>
 
-        {/* Logout Button
+    <div>
+      <Header />
+      <h3 style={{ color: 'white', margin: "10px 180px" }}>Welcome to, <small style={{ fontSize: '0.8rem', opacity: 0.7, color: '#F79B72' , fontSize:'20px'}}>
+        {user.college?.name || 'College not specified'}
+      </small> Community</h3>
+      <div
+        className="dashboard"
+        style={{
+          maxWidth: "85%",
+          display: "flex",
+          margin: "2rem auto",
+          padding: "1rem",
+          background: "#1b263b",
+          borderRadius: 8,
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+        }}
+      >
+
+        <div className='my-profile-section' >
+          <div >
+            {user.profilePic && (
+              <img className='profile-dp'
+                src={`http://localhost:5000${user.profilePic}`}
+                alt={`${user.name}'s profile`}
+
+              />
+            )}
+
+            {/* Link to view your own profile */}
+            <Link
+              to={`/profile/${user._id}`}
+
+            >
+              <div className='btn-my-profile' >
+                <span>{user.name}</span>
+                <small style={{ fontSize: '0.8rem', opacity: 0.7, color: 'white' }}>
+                  {user.college?.name || 'College not specified'}
+                </small>
+              </div>
+            </Link>
+
+
+
+            {/* Link to Edit Profile for logged-in user */}
+            <Link to="/edit-profile" style={{ marginRight: '1rem', textDecoration: 'none' }} title="Edit your profile">
+              <button className='btn-profile'>Edit Profile</button>
+            </Link>
+            {/* Link to Friend Requests */}
+            <Link to="/friend-requests" style={{ textDecoration: "none" }}>
+              <button className='btn-profile' title="View your received friend requests">
+                Friend Requests ({receivedRequestsCount})
+              </button>
+            </Link>
+          </div>
+
+          {/* Logout Button
         <button
           onClick={() => { logout(); navigate("/login"); }}
           style={{
@@ -154,46 +178,46 @@ const Dashboard = () => {
         >
           Logout
         </button> */}
+        </div>
+
+        <div className='peer-section'>
+          <h2>Your Peers</h2>
+          {msg && <p style={{ color: 'green' }}>{msg}</p>}
+
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              {users.length === 0 && <li>No other students found.</li>}
+              {users.map(u => (
+                <li key={u._id} className='peer-list-items'>
+                  <Link to={`/profile/${u._id}`} style={{ textDecoration: 'none', color: 'white' }} title={`View ${u.name}'s profile`}>
+                    {u.name}
+                  </Link>
+                  {isAlreadyFriend(u._id) ? (
+                    <button disabled className='btn-friends' aria-label="Friends" title="You are friends with this user">
+                      Friends
+                    </button>
+                  ) : isRequestSent(u._id) ? (
+                    <button disabled className='btn-peer-req' aria-label="Request Sent" title="Friend request sent to this user">
+                      Request Sent
+                    </button>
+                  ) : (
+                    <button
+                      className='btn-add-friend'
+                      onClick={() => sendFriendRequest(u._id)}
+                      aria-label="Add Friend"
+                      title={`Send friend request to ${u.name}`}
+                    >
+                      Add Friend
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-
-     <div className='peer-section'>
-       <h2>Your Peers</h2>
-      {msg && <p style={{ color: 'green' }}>{msg}</p>}
-
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          {users.length === 0 && <li>No other students found.</li>}
-          {users.map(u => (
-            <li key={u._id} className='peer-list-items'>
-              <Link to={`/profile/${u._id}`} style={{ textDecoration: 'none', color:'white' }} title={`View ${u.name}'s profile`}>
-                {u.name} 
-              </Link>
-              {isAlreadyFriend(u._id) ? (
-                <button disabled className='btn-friends' aria-label="Friends" title="You are friends with this user">
-                  Friends
-                </button>
-              ) : isRequestSent(u._id) ? (
-                <button disabled className='btn-peer-req' aria-label="Request Sent" title="Friend request sent to this user">
-                  Request Sent
-                </button>
-              ) : (
-                <button
-                  className='btn-add-friend'
-                  onClick={() => sendFriendRequest(u._id)}
-                  aria-label="Add Friend"
-                  title={`Send friend request to ${u.name}`}
-                >
-                  Add Friend
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-     </div>
-    </div>
     </div>
   );
 };

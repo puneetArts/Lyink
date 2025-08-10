@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import illustration from '../assets/images/illustration.png'
+import './Signup.css'
 const Signup = () => {
   const [colleges, setColleges] = useState([]);
   const [form, setForm] = useState({
@@ -28,7 +29,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
+    <div className='signup-page'>
+          <img style={{margin:"150px 0px", maxHeight:"450px"}} src={illustration} alt='illustration'/>
+          <div className="signup-container">
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
         <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
@@ -41,7 +44,8 @@ const Signup = () => {
         <button type="submit">Signup</button>
       </form>
       <p style={{color:"red"}}>{msg}</p>
-      <a href="/login">Already have an account?</a>
+      <a href="/login">Already have an account?</a><a href="/login">Login</a>
+    </div>
     </div>
   );
 };

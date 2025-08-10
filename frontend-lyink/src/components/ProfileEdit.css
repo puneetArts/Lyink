@@ -1,121 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,500&display=swap');
+/* ProfileEdit.css */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f2ef;
+  margin: 0;
+  padding: 0;
+}
 
-.profile-edit {
+.profile-edit-container {
+  background-color: #f3f2ef;
   max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem 2.5rem;
-  background: var(--color-white);
+  color: #1b263b;
+  margin: 50px auto;
+  padding: 40px 35px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  color: var(--color-bg);
-  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Heading */
-.profile-edit h2 {
-  font-size: 1.8rem;
-  color: var(--color-primary);
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+.profile-edit-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #0a66c2; /* LinkedIn blue */
   text-align: center;
 }
 
-/* Messages */
-.profile-edit p {
+.message {
   text-align: center;
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-  font-weight: 500;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: red;
 }
 
-/* Form fields */
-.profile-edit form {
+.profile-edit-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
 }
 
-.profile-edit label {
+.profile-edit-form label {
   font-weight: 600;
-  color: var(--color-bg-variant);
+  margin-bottom: 6px;
+  font-size: 14px;
 }
 
-.profile-edit input,
-.profile-edit textarea {
-  padding: 0.6rem 0.8rem;
-  font-size: 1rem;
-  border: 1.5px solid var(--color-bg-variant);
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
+.profile-edit-form input,
+.profile-edit-form textarea {
+  margin-bottom: 15px;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
 }
 
-.profile-edit input:focus,
-.profile-edit textarea:focus {
+.profile-edit-form input:focus,
+.profile-edit-form textarea:focus {
+  border-color: #0a66c2;
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 6px var(--color-primary);
-  background-color: #fefaf6;
-  color: var(--color-bg);
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  resize: vertical;
+  box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
 }
 
-/* Textarea resize */
-.profile-edit textarea {
-  resize: vertical;
-  min-height: 80px;
+.profile-pic-preview {
+  margin-bottom: 15px;
+  text-align: center;
 }
 
-/* Submit button */
-.profile-edit button[type="submit"] {
-  cursor: pointer;
-  background-color: var(--color-primary);
-  color: var(--color-white);
+.profile-pic-preview img {
+  max-width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.btn-save {
+  background-color: #F79B72;
+  width: 150px;
+  color: #fff;
+  padding: 12px 14px;
   border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  font-weight: 700;
-  transition: background-color 0.3s ease;
-  align-self: center;
-  width: 50%;
-}
-
-.profile-edit button[type="submit"]:hover {
-  background-color: var(--color-bg-variant);
-  color: var(--color-primary);
-}
-
-/* Logout button */
-.profile-edit .logout-btn {
-  margin-top: 1.5rem;
+  border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
-  background-color: var(--color-bg-variant);
-  color: var(--color-primary);
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 5px;
   font-weight: 600;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  display: block;
-  width: 100%;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
 }
 
-.profile-edit .logout-btn:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+.btn-save:hover {
+  background-color: #004182;
+}
+
+.btn-logout {
+  background-color: #5e6163;
+  width: 150px;
+  color: #fff;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.btn-logout:hover {
+  background-color: #a6242d;
 }
 
 /* Responsive */
-@media screen and (max-width: 600px) {
-  .profile-edit {
-    width: 90%;
-    padding: 1.5rem;
+@media (max-width: 768px) {
+  .profile-edit-container {
+    margin: 20px;
+    padding: 25px;
   }
-  
-  .profile-edit button[type="submit"] {
-    width: 100%;
+
+  .profile-pic-preview img {
+    max-width: 120px;
+    height: 120px;
   }
 }

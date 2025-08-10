@@ -1,0 +1,110 @@
+/* Signup.css */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1b263b;
+  margin: 0;
+  
+}
+
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.signup-page img {
+  max-width: 400px;
+  height: auto;
+  /* margin-left: 40px; */
+}
+
+.signup-container {
+  background-color: #f3f2ef;
+  padding: 40px 35px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px  #f3f2ef;
+
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #0a66c2; /* LinkedIn blue */
+  text-align: center;
+}
+
+.signup-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-container input,
+.signup-container select {
+  margin-bottom: 15px;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.signup-container input:focus,
+.signup-container select:focus {
+  border-color: #0a66c2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
+}
+
+.signup-container button {
+  background-color: #0a66c2;
+  color: #fff;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.signup-container button:hover {
+  background-color: #004182;
+}
+
+.signup-container p {
+  margin: 10px 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.signup-container a {
+  color: #0a66c2;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.signup-container a:hover {
+  text-decoration: underline;
+  color: #F79B72;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .signup-page {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .signup-page img {
+    margin: 0;
+    max-width: 250px;
+  }
+}

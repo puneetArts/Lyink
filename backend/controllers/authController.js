@@ -2,6 +2,8 @@ const User = require("../models/User");
 const College = require("../models/College");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const path = require("path");
+
 
 exports.signup = async (req, res) => {
   try {
@@ -29,5 +31,32 @@ exports.login = async (req, res) => {
     res.json({ token });
   } catch (e) {
     res.status(500).json({ msg: e.message });
+  }
+};
+
+
+exports.updateUserProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    // If using Multer, access file: req.file
+    const { name, bio, major, year, interests } = req.body;
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ msg: 'User not found' });
+
+    if (name !== undefined) user.name = name;
+    if (bio !== undefined) user.bio = bio;
+    if (major !== undefined) user.major = major;
+    if (year !== undefined) user.year = year;
+    if (interests !== undefined) user.interests = interests;
+    // File handling
+    if (req.file) {
+      user.profilePic = `/uploads/${req.file.filename}`;
+    }
+
+    await user.save();
+    res.json({ msg: 'Profile updated', user });
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
   }
 };

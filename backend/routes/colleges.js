@@ -1,6 +1,9 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { getColleges } = require("../controllers/collegeController");
-router.get("/", getColleges);
-// router.post("/", addCollege); // For initial data seeding only
+const { addCollege, getColleges } = require('../controllers/collegeController');
+const auth = require('../middlewares/authMiddleware'); // if you want to protect this, optional
+
+router.get('/', getColleges);
+router.post('/',/* auth, optional */ addCollege);
+
 module.exports = router;

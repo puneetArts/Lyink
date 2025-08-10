@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/authMiddleware");
+const upload = require("../middlewares/upload");
 const { getUsersFromSameCollege,
   getCurrentUser,
   sendFriendRequest,
@@ -22,6 +23,6 @@ router.get("/friend-requests", auth, getFriendRequests);  // friend requests you
 router.get("/friends", auth, getFriendsList);
 
 router.get('/:id', auth, getUserProfile);           // view any user's profile by ID
-router.put('/me', auth, updateUserProfile);          // update own profile
+router.put('/me', auth, upload.single("profilePic"), updateUserProfile);         // update own profile
 
 module.exports = router;

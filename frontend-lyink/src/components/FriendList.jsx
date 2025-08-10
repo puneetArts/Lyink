@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // ⬅️ Import Link
 import { AuthContext } from "../contexts/AuthContext";
 import Header from './Header';
+import './FriendList.css';
 
 const FriendList = () => {
   const { user } = useContext(AuthContext);
@@ -31,23 +33,37 @@ const FriendList = () => {
   }, [user]);
 
   if (loading) return <p>Loading friends...</p>;
-
   if (msg) return <p style={{ color: 'red' }}>{msg}</p>;
-
-  if (!friends.length) return <div> <Header/><p>You have no friends added yet.</p></div>;
 
   return (
     <div>
-      <Header/>
-      
-              <div>
-      <h3>Your Friends</h3>
-      <ul>
-        {friends.map(f => (
-          <li key={f._id}>{f.name} ({f.email})</li>
-        ))}
-      </ul>
-    </div>
+      <Header />
+      <div className="friend-list-container">
+        {friends.length > 0 ? (
+          <>
+            <h3>Your Friends</h3>
+            <ul>
+              {friends.map(f => (
+                <li key={f._id}>
+                  {/* Friend Name clickable link */}
+                  <Link
+                    to={`/profile/${f._id}`} // ⬅️ Dynamic route to friend's profile
+                    style={{ textDecoration: 'none', color: '#007bff' }} // Optional styling
+                    title={`View ${f.name}'s profile`}
+                  >
+                    {f.name}
+                  </Link>
+                  <span style={{ marginLeft: '0.5rem', color: '#666' }}>
+                    ({f.email})
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p>You have no friends added yet.</p>
+        )}
+      </div>
     </div>
   );
 }

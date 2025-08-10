@@ -11,7 +11,7 @@
   padding: 1.5rem;
   border-radius: 1rem;
   margin: 1rem;
-  max-height: 40vh;
+  max-height: 50vh;
 }
 
 .peer-section {
@@ -38,7 +38,17 @@
   margin-top: 1rem;
   color: black
 }
-
+.btn-my-profile {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+  color: #F79B72
+}
+.btn-my-profile:hover {
+  color: #fff;
+}
 .btn-profile:hover {
   background: white;
 }
@@ -51,6 +61,18 @@
   width: 150px;
 
 }
+.profile-dp {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 0.5rem;
+  border: 2px solid #F79B72;
+}
+.btn-add-friend:hover{
+  background: white;
+}
 .btn-friends {
   background: transparent;
   /* border: 1px solid rgb(121, 178, 37); */
@@ -59,6 +81,10 @@
   color: rgb(121, 178, 37);
   width: 150px;
 
+}
+.btn-friends:hover{
+  background: transparent;
+  
 }
 .btn-peer-req {
   background: transparent;
