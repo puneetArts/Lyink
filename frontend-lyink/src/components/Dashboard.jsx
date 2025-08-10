@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import Header from './Header';
-
+import './Dashboard.css'
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
@@ -109,34 +109,36 @@ const Dashboard = () => {
     
     <div>
       <Header/>
+      <h3 style={{ color: 'white' }}>Welcome, {user.name} ({user.email})</h3>
       <div
       className="dashboard"
       style={{
-        maxWidth: 1000,
+        maxWidth: "85%",
+        display:"flex",
         margin: "2rem auto",
         padding: "1rem",
-        background: "#fff",
+        background: "#1b263b",
         borderRadius: 8,
         boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
       }}
     >
       
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-        <div>
-          <h4 style={{ color: 'black' }}>Welcome, {user.name} ({user.email})</h4>
+      <div className='my-profile-section' >
+        <div >
+          
           {/* Link to Edit Profile for logged-in user */}
           <Link to="/edit-profile" style={{ marginRight: '1rem', textDecoration: 'none' }} title="Edit your profile">
-            <button>Edit Profile</button>
+            <button className='btn-profile'>Edit Profile</button>
           </Link>
           {/* Link to Friend Requests */}
           <Link to="/friend-requests" style={{ textDecoration: "none" }}>
-            <button style={{ marginTop: 8, padding: "6px 12px" }} title="View your received friend requests">
+            <button className='btn-profile' title="View your received friend requests">
               Friend Requests ({receivedRequestsCount})
             </button>
           </Link>
         </div>
 
-        {/* Logout Button */}
+        {/* Logout Button
         <button
           onClick={() => { logout(); navigate("/login"); }}
           style={{
@@ -151,10 +153,11 @@ const Dashboard = () => {
           title="Logout"
         >
           Logout
-        </button>
+        </button> */}
       </div>
 
-      <h2>Students in your College</h2>
+     <div className='peer-section'>
+       <h2>Your Peers</h2>
       {msg && <p style={{ color: 'green' }}>{msg}</p>}
 
       {loading ? (
@@ -163,26 +166,21 @@ const Dashboard = () => {
         <ul style={{ listStyle: "none", padding: 0 }}>
           {users.length === 0 && <li>No other students found.</li>}
           {users.map(u => (
-            <li key={u._id} style={{
-              marginBottom: "0.8rem",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}>
-              <Link to={`/profile/${u._id}`} style={{ textDecoration: 'none', color: 'black' }} title={`View ${u.name}'s profile`}>
-                {u.name} ({u.email})
+            <li key={u._id} className='peer-list-items'>
+              <Link to={`/profile/${u._id}`} style={{ textDecoration: 'none', color:'white' }} title={`View ${u.name}'s profile`}>
+                {u.name} 
               </Link>
               {isAlreadyFriend(u._id) ? (
-                <button disabled style={{ marginLeft: "10px", padding: "6px 12px" }} aria-label="Friends" title="You are friends with this user">
+                <button disabled className='btn-friends' aria-label="Friends" title="You are friends with this user">
                   Friends
                 </button>
               ) : isRequestSent(u._id) ? (
-                <button disabled style={{ marginLeft: "10px", padding: "6px 12px" }} aria-label="Request Sent" title="Friend request sent to this user">
+                <button disabled className='btn-peer-req' aria-label="Request Sent" title="Friend request sent to this user">
                   Request Sent
                 </button>
               ) : (
                 <button
-                  style={{ marginLeft: "10px", padding: "6px 12px", cursor: "pointer" }}
+                  className='btn-add-friend'
                   onClick={() => sendFriendRequest(u._id)}
                   aria-label="Add Friend"
                   title={`Send friend request to ${u.name}`}
@@ -194,6 +192,7 @@ const Dashboard = () => {
           ))}
         </ul>
       )}
+     </div>
     </div>
     </div>
   );

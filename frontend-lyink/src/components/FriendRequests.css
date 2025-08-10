@@ -1,0 +1,21 @@
+.friend-req{
+  background: #2b4a5d;
+  display: flex;
+  flex-direction: row;
+  margin: 2px;
+  padding: 0.8rem;
+  max-width: 60%;
+  align-items: center;
+  
+  
+}
+.btn-acc-dec{
+     align-items: end;
+     margin-left: 150px;
+}
+.main-friend-req{
+  max-width: 60%;
+  align-items: center;
+  margin-left: 250px;
+  border-radius: 0.8rem;
+}

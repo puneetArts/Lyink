@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../contexts/AuthContext";
 import Header from './Header';
-
+import './FriendRequests.css'
 const FriendRequests = () => {
   const { user } = useContext(AuthContext);
   const [requests, setRequests] = useState([]);
@@ -31,17 +31,19 @@ const FriendRequests = () => {
     }
   };
 
-  if (!requests.length) return <div><Header/><p>No pending friend requests</p></div>;
+  if (!requests.length) return <div><Header/><p style={{margin:"10px 180px"}}>No pending friend requests</p></div>;
 
   return (
     <div>
       <Header/>
       <div>
-      <h3>Friend Requests</h3>
+        <h3>Friend Requests</h3>
+        <div className='main-friend-req'>
+      
       {requests.map(r => (
-        <div key={r._id} style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
+        <div key={r._id} className='friend-req'>
           <strong>{r.name}</strong> ({r.email})
-          <div>
+          <div className='btn-acc-dec'>
             <button onClick={() => handleAction(r._id, 'accept')}>Accept</button>
             <button onClick={() => handleAction(r._id, 'decline')}>Decline</button>
           </div>
@@ -49,6 +51,7 @@ const FriendRequests = () => {
       ))}
       {msg && <p>{msg}</p>}
     </div>
+      </div>
     </div>
   );
 };

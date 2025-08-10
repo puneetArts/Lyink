@@ -1,0 +1,83 @@
+.my-profile-section {
+  display: flex;
+  flex-direction: column;
+  background: #2b4a5d;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+
+  width: 20%;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  max-height: 40vh;
+}
+
+.peer-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  background: #2b4a5d;
+  max-width: 80%;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.peer-section h2 {
+  color: #F79B72;
+}
+
+.btn-profile {
+  background: #F79B72;
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+  color: black
+}
+
+.btn-profile:hover {
+  background: white;
+}
+
+.btn-add-friend {
+  background: #F79B72;
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+  color: black;
+  width: 150px;
+
+}
+.btn-friends {
+  background: transparent;
+  /* border: 1px solid rgb(121, 178, 37); */
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+  color: rgb(121, 178, 37);
+  width: 150px;
+
+}
+.btn-peer-req {
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+  color: white;
+  width: 150px;
+
+}
+.btn-peer-req:hover{
+  background: #1b263b;
+  border: 1px solid #1b263b;
+}
+
+.peer-list-items {
+  margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.5rem;
+}

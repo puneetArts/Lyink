@@ -34,7 +34,7 @@ const FriendList = () => {
 
   if (msg) return <p style={{ color: 'red' }}>{msg}</p>;
 
-  if (!friends.length) return <p>You have no friends added yet.</p>;
+  if (!friends.length) return <div> <Header/><p>You have no friends added yet.</p></div>;
 
   return (
     <div>
