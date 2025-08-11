@@ -71,7 +71,7 @@ const ProfileView = () => {
               style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover' }}
             />
           )}
-          <p>{profile.bio }</p>
+          <div className='bio'><p >{profile.bio }</p></div>
         </div>
 
         <p><b>Email:</b> {profile.email}</p>

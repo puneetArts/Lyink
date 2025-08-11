@@ -59,7 +59,7 @@ const FriendList = () => {
                   />
 
                   {/* Friend Name clickable link */}
-                  <div>
+                  <div className='friends'>
                     <Link
                       to={`/profile/${f._id}`}
                       style={{ textDecoration: 'none', color: 'white', fontWeight: 500 }}
