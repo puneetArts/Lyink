@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: var(--color-bg);
+  background-color: var(--color-bg2);
   color: var(--color-white);
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -40,7 +40,21 @@
   font-weight: 500;
   transition: color 0.25s;
 }
+.icon2{
+  font-size: 30px;
+  color: #ffffff;
+  margin-left: 0.6rem;
 
+}
+.icon3{
+  font-size: 26px;
+  color: #ffffff;
+}
+.icon4{
+  font-size: 26px;
+  color: #ffffff;
+  font-weight: 100;
+}
 .header-nav a:hover {
   color: var(--color-primary);
 }
@@ -55,6 +69,7 @@
 .header-user {
   font-weight: 500;
   font-size: 0.95rem;
+  gap: 0.9rem;
 }
 
 /* Logout button */

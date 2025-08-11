@@ -1,3 +1,8 @@
+.dashboard{
+  display: flex;
+  gap: 10px;
+  
+}
 .my-profile-section {
   display: flex;
   flex-direction: column;
@@ -7,7 +12,7 @@
   margin-bottom: 1.5rem;
   gap: 1.5rem;
 
-  width: 20%;
+  width: 30%;
   padding: 1.5rem;
   border-radius: 1rem;
   margin: 1rem;
@@ -18,14 +23,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin-bottom: 1.5rem;
   gap: 1.5rem;
   background: #2b4a5d;
-  max-width: 80%;
+  width: 100%;
   padding: 1.5rem;
   border-radius: 1rem;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 .peer-section h2 {
@@ -106,4 +111,59 @@
   justify-content: space-between;
   align-items: center;
   gap: 3.5rem;
+}
+.college-feed{
+  
+}
+.feed-section {
+  background: white;
+  
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+.feed-container {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px; /* keeps layout centered like LinkedIn */
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* prevents child overflow */
+  background: #1b263b;
+}
+
+/* Posts column */
+.post {
+  flex: 4; /* main content gets more space */
+  width: 70%; /* prevent overflow */
+  height: 100%;
+ background: #2b4a5d;
+  border-radius: 8px;
+  padding: 5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  overflow: auto;
+}
+
+/* Achievements column */
+.achievement {
+  flex: 1.1; /* sidebar is smaller */
+  min-width: 0;
+  background: #2b4a5d;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  height: fit-content; /* prevents stretching unnecessarily */
+  overflow: auto;
+}
+
+/* Optional: make it responsive for mobile */
+@media (max-width: 768px) {
+  .feed-container {
+    flex-direction: column;
+  }
+
+  .achievement {
+    order: -1; /* achievements above posts if desired */
+  }
 }

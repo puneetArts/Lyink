@@ -30,7 +30,7 @@ const Signup = () => {
 
   return (
     <div className='signup-page'>
-          <img style={{margin:"150px 0px", maxHeight:"450px"}} src={illustration} alt='illustration'/>
+          <img style={{margin:"150px", maxHeight:"450px"}} src={illustration} alt='illustration'/>
           <div className="signup-container">
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>

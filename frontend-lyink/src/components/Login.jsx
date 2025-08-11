@@ -26,7 +26,7 @@ const Login = () => {
 
   return (
     <div className='login-page'>
-      <img style={{margin:"150px 0px", maxHeight:"450px"}} src={illustration} alt='illustration'/>
+      <img style={{margin:"150px ", maxHeight:"450px"}} src={illustration} alt='illustration'/>
       <div className="login-container">
       
       <h2 style={{color:"black"}}>Login</h2>

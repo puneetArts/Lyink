@@ -17,6 +17,8 @@ app.use('/api/colleges', collegeRoutes);
 
 app.use("/api/users", require("./routes/users"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use('/api/achievements', require('./routes/achievements'));
+app.use('/api/posts', require('./routes/posts'));
 
 // Seed colleges if none exist (optionally run only once)
 const College = require("./models/College");

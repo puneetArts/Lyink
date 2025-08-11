@@ -2,13 +2,14 @@
 
 .friend-list-container {
   max-width: 500px;
+  height: 1200px;
   margin: 3rem auto;
   padding: 2rem;
-  background: #ffffff;
+  background: #2b4a5d;
   border-radius: 15px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
+  text-align: left;
 }
 
 .friend-list-container:hover {
@@ -18,7 +19,7 @@
 
 .friend-list-container h3 {
   font-size: 1.5rem;
-  color: #333;
+  color: #F79B72;
   margin-bottom: 1rem;
 }
 

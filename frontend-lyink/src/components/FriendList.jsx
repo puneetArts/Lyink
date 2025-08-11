@@ -41,23 +41,39 @@ const FriendList = () => {
       <div className="friend-list-container">
         {friends.length > 0 ? (
           <>
-            <h3>Your Friends</h3>
+            <h3>My Chain</h3>
             <ul>
               {friends.map(f => (
-                <li key={f._id}>
+                <li key={f._id} style={{ background: "transparent", textAlign: "left", alignItems: "center", display: "flex", gap: "0.8rem" }}>
+                  {/* Friend profile picture with fallback */}
+                  <img
+                    src={f.profilePic ? `http://localhost:5000${f.profilePic}` : '/default-avatar.jpg'}
+                    alt={`${f.name}'s profile`}
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "50%",
+                      objectFit: "cover"
+                    }}
+                    onError={(e) => { e.target.onerror = null; e.target.src = '/default-avatar.jpg'; }}
+                  />
+
                   {/* Friend Name clickable link */}
-                  <Link
-                    to={`/profile/${f._id}`} // ⬅️ Dynamic route to friend's profile
-                    style={{ textDecoration: 'none', color: '#007bff' }} // Optional styling
-                    title={`View ${f.name}'s profile`}
-                  >
-                    {f.name}
-                  </Link>
-                  <span style={{ marginLeft: '0.5rem', color: '#666' }}>
-                    ({f.email})
-                  </span>
+                  <div>
+                    <Link
+                      to={`/profile/${f._id}`}
+                      style={{ textDecoration: 'none', color: 'white', fontWeight: 500 }}
+                      title={`View ${f.name}'s profile`}
+                    >
+                      {f.name}
+                    </Link>
+                    <span style={{ marginLeft: '0.5rem', color: "#a4a0a0" }}>
+                      ({f.email})
+                    </span>
+                  </div>
                 </li>
               ))}
+
             </ul>
           </>
         ) : (

@@ -4,6 +4,9 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import Header from './Header';
 import './Dashboard.css'
+import AchievementsList from './AchievementsList';
+import PostsList from './PostsList';
+
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
@@ -12,6 +15,11 @@ const Dashboard = () => {
   const [friends, setFriends] = useState([]);
   const [receivedRequestsCount, setReceivedRequestsCount] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  // NEW: State for college-wide posts & achievements
+  const [collegePosts, setCollegePosts] = useState([]);
+  const [collegeAchievements, setCollegeAchievements] = useState([]);
+
   const navigate = useNavigate();
 
   // Fetch all users from the same college except current user
@@ -48,7 +56,7 @@ const Dashboard = () => {
         setFriendRequestsSent(res.data.friendRequestsSent || []);
         setFriends(res.data.friends || []);
       } catch {
-        // silently ignore errors here
+        // ignore errors silently
       }
     };
 
@@ -73,6 +81,30 @@ const Dashboard = () => {
     fetchReceivedRequestsCount();
   }, [user]);
 
+  // Fetch college posts and achievements (NEW)
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchCollegeFeed = async () => {
+      try {
+        const [postsRes, achieRes] = await Promise.all([
+          axios.get("http://localhost:5000/api/posts/college", {
+            headers: { Authorization: `Bearer ${user.token}` }
+          }),
+          axios.get("http://localhost:5000/api/achievements/college", {
+            headers: { Authorization: `Bearer ${user.token}` }
+          })
+        ]);
+        setCollegePosts(postsRes.data || []);
+        setCollegeAchievements(achieRes.data || []);
+      } catch (err) {
+        console.error("Error loading college feed:", err);
+      }
+    };
+
+    fetchCollegeFeed();
+  }, [user]);
+
   // Handle sending a friend request
   const sendFriendRequest = async (receiverId) => {
     setMsg('');
@@ -89,7 +121,6 @@ const Dashboard = () => {
     }
   };
 
-  // Check if friend request already sent to the user
   const isRequestSent = (userId) => {
     return friendRequestsSent.some(id => {
       if (typeof id === 'string') return id === userId;
@@ -97,7 +128,6 @@ const Dashboard = () => {
     });
   };
 
-  // Check if already friends with the user
   const isAlreadyFriend = (userId) => {
     return friends.some(f => {
       if (typeof f === 'string') return f === userId;
@@ -106,12 +136,16 @@ const Dashboard = () => {
   };
 
   return (
-
     <div>
       <Header />
-      <h3 style={{ color: 'white', margin: "10px 180px" }}>Welcome to, <small style={{ fontSize: '0.8rem', opacity: 0.7, color: '#F79B72' , fontSize:'20px'}}>
-        {user.college?.name || 'College not specified'}
-      </small> Community</h3>
+      <h3 style={{ color: 'white', margin: "10px 180px" }}>
+        Welcome to,{" "}
+        <small style={{ opacity: 0.7, color: '#F79B72', fontSize: '20px' }}>
+          {user.college?.name || 'College not specified'}
+        </small>{" "}
+        Community
+      </h3>
+
       <div
         className="dashboard"
         style={{
@@ -124,23 +158,19 @@ const Dashboard = () => {
           boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
         }}
       >
-
-        <div className='my-profile-section' >
-          <div >
+        {/* My Profile Section */}
+        <div className='my-profile-section'>
+          <div>
             {user.profilePic && (
-              <img className='profile-dp'
+              <img
+                className='profile-dp'
                 src={`http://localhost:5000${user.profilePic}`}
                 alt={`${user.name}'s profile`}
-
               />
             )}
 
-            {/* Link to view your own profile */}
-            <Link
-              to={`/profile/${user._id}`}
-
-            >
-              <div className='btn-my-profile' >
+            <Link to={`/profile/${user._id}`}>
+              <div className='btn-my-profile'>
                 <span>{user.name}</span>
                 <small style={{ fontSize: '0.8rem', opacity: 0.7, color: 'white' }}>
                   {user.college?.name || 'College not specified'}
@@ -148,76 +178,98 @@ const Dashboard = () => {
               </div>
             </Link>
 
-
-
-            {/* Link to Edit Profile for logged-in user */}
-            <Link to="/edit-profile" style={{ marginRight: '1rem', textDecoration: 'none' }} title="Edit your profile">
+            <Link to="/edit-profile" style={{ marginRight: '1rem', textDecoration: 'none' }}>
               <button className='btn-profile'>Edit Profile</button>
             </Link>
-            {/* Link to Friend Requests */}
+
             <Link to="/friend-requests" style={{ textDecoration: "none" }}>
-              <button className='btn-profile' title="View your received friend requests">
+              <button className='btn-profile'>
                 Friend Requests ({receivedRequestsCount})
               </button>
             </Link>
+
+            {/* peer-section */}
+
+          </div>
+          <div className='peer-section'>
+            <h2>Your Peers</h2>
+            {msg && <p style={{ color: 'green' }}>{msg}</p>}
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <ul style={{ listStyle: "none", padding: 0 }}>
+                {users.length === 0 && <li>No other students found.</li>}
+                {users.map(u => (
+                  <li key={u._id} className='peer-list-items' style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                    {/* Profile Picture with fallback to default avatar */}
+                    <img
+                      src={u.profilePic ? `http://localhost:5000${u.profilePic}` : '/default-avatar.jpg'}
+                      alt={`${u.name}'s profile`}
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                        objectFit: "cover"
+                      }}
+                      onError={(e) => { e.target.onerror = null; e.target.src = '/default-avatar.jpg'; }}
+                    />
+
+
+                    {/* User Name link */}
+                    <Link
+                      to={`/profile/${u._id}`}
+                      style={{ textDecoration: 'none', color: 'white', fontWeight: '500' }}
+                      title={`View ${u.name}'s profile`}
+                    >
+                      {u.name}
+                    </Link>
+
+                    {/* Friend request buttons */}
+                    {isAlreadyFriend(u._id) ? (
+                      <button disabled className='btn-friends'>Friends</button>
+                    ) : isRequestSent(u._id) ? (
+                      <button disabled className='btn-peer-req'>Request Sent</button>
+                    ) : (
+                      <button
+                        className='btn-add-friend'
+                        onClick={() => sendFriendRequest(u._id)}
+                      >
+                        Add Friend
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
-          {/* Logout Button
-        <button
-          onClick={() => { logout(); navigate("/login"); }}
-          style={{
-            backgroundColor: "#dc3545",
-            color: "white",
-            border: "none",
-            padding: "8px 16px",
-            borderRadius: 4,
-            cursor: "pointer"
-          }}
-          aria-label="Logout"
-          title="Logout"
-        >
-          Logout
-        </button> */}
         </div>
 
-        <div className='peer-section'>
-          <h2>Your Peers</h2>
-          {msg && <p style={{ color: 'green' }}>{msg}</p>}
+        {/* feed Section */}
+        <div >
+          <div className="college-feed" style={{ maxWidth: "100%", padding: "1rem", borderRadius: 8 }}>
+            <h2 style={{ color: "white" }}>See what's up <span style={{ color: "#a4a0a0" }}>@</span><small style={{ opacity: 0.7, color: '#F79B72', fontSize: '20px' }}>
+              {user.college?.name || 'College not specified'}
+            </small>{" "}</h2>
 
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              {users.length === 0 && <li>No other students found.</li>}
-              {users.map(u => (
-                <li key={u._id} className='peer-list-items'>
-                  <Link to={`/profile/${u._id}`} style={{ textDecoration: 'none', color: 'white' }} title={`View ${u.name}'s profile`}>
-                    {u.name}
-                  </Link>
-                  {isAlreadyFriend(u._id) ? (
-                    <button disabled className='btn-friends' aria-label="Friends" title="You are friends with this user">
-                      Friends
-                    </button>
-                  ) : isRequestSent(u._id) ? (
-                    <button disabled className='btn-peer-req' aria-label="Request Sent" title="Friend request sent to this user">
-                      Request Sent
-                    </button>
-                  ) : (
-                    <button
-                      className='btn-add-friend'
-                      onClick={() => sendFriendRequest(u._id)}
-                      aria-label="Add Friend"
-                      title={`Send friend request to ${u.name}`}
-                    >
-                      Add Friend
-                    </button>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
+            <div className="feed-section" >
+              <div className="feed-container">
+                <div className='post' >
+                  <PostsList posts={collegePosts} />
+                </div>
+                {/* <div className='achievement'>
+                  <AchievementsList achievements={collegeAchievements} />
+                </div> */}
+              </div>
+
+            </div>
+          </div>
         </div>
+
       </div>
+
+
+
     </div>
   );
 };

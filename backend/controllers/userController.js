@@ -120,7 +120,7 @@ exports.getFriendRequests = async (req, res) => {
 exports.getFriendsList = async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
-      .populate("friends", "name email");
+      .populate("friends", "name email profilePic");
     res.json(user.friends);
   } catch (err) {
     res.status(500).json({ msg: err.message });

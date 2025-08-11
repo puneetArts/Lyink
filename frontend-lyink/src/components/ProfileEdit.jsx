@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import Header from './Header';
 import './ProfileEdit.css';
+import AchievementForm from './AchievementForm';
+import PostForm from './PostForm';
+import AchievementsList from './AchievementsList';
+import PostsList from './PostsList';
 
 const ProfileEdit = () => {
   const { user, login, logout } = useContext(AuthContext);
@@ -139,6 +143,10 @@ const ProfileEdit = () => {
         </form>
 
         <button onClick={handleLogout} className="btn-logout">Logout</button>
+      </div>
+      <div className="profile-edit-container2">
+       <div className="profile-edit-container"> <AchievementForm onAdded={a => console.log('Added', a)} /></div>
+      <div className="profile-edit-container"><PostForm onAdded={p => console.log('Added', p)} /></div>
       </div>
     </div>
   );
