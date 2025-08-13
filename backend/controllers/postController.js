@@ -21,7 +21,8 @@ exports.createPost = async (req, res) => {
 exports.getUserPosts = async (req, res) => {
   try {
     const posts = await Post.find({ user: req.params.userId })
-      .populate('user', 'name profilePic');
+      .populate('user', 'name profilePic')
+      .sort({ createdAt: -1 });
     res.json(posts);
   } catch (err) {
     res.status(500).json({ msg: err.message });
@@ -31,7 +32,8 @@ exports.getUserPosts = async (req, res) => {
 exports.getCollegePosts = async (req, res) => {
   try {
     const posts = await Post.find({ college: req.user.college })
-      .populate('user', 'name profilePic');
+      .populate('user', 'name profilePic')
+      .sort({ createdAt: -1 });
     res.json(posts);
   } catch (err) {
     res.status(500).json({ msg: err.message });

@@ -153,21 +153,23 @@ const Dashboard = () => {
           display: "flex",
           margin: "2rem auto",
           padding: "1rem",
-          background: "#1b263b",
-          borderRadius: 8,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+          background: "transparent",
+
+
         }}
       >
         {/* My Profile Section */}
         <div className='my-profile-section'>
           <div>
-            {user.profilePic && (
-              <img
-                className='profile-dp'
-                src={`http://localhost:5000${user.profilePic}`}
-                alt={`${user.name}'s profile`}
-              />
-            )}
+            <img
+              className='profile-dp'
+              src={user.profilePic ? `http://localhost:5000${user.profilePic}` : '/default-avatar.jpg'}
+              alt={`${user.name}'s profile`}
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = '/default-avatar.jpg';
+              }}
+            />
 
             <Link to={`/profile/${user._id}`}>
               <div className='btn-my-profile'>
@@ -183,17 +185,18 @@ const Dashboard = () => {
             </Link>
 
             <Link to="/friend-requests" style={{ textDecoration: "none" }}>
-              <button className='btn-profile'>
+              <button className='btn-profile2'>
                 Friend Requests ({receivedRequestsCount})
               </button>
             </Link>
 
-            {/* peer-section */}
+
 
           </div>
+          {/* peer-section */}
           <div className='peer-section'>
             <h2>Your Peers</h2>
-            {msg && <p style={{ color: 'green' }}>{msg}</p>}
+            {msg && <p style={{ color: '#65cd61' }}>{msg}</p>}
             {loading ? (
               <p>Loading...</p>
             ) : (
@@ -225,7 +228,9 @@ const Dashboard = () => {
                     </Link>
 
                     {/* Friend request buttons */}
-                    {isAlreadyFriend(u._id) ? (
+
+                    <div>
+                      {isAlreadyFriend(u._id) ? (
                       <button disabled className='btn-friends'>Friends</button>
                     ) : isRequestSent(u._id) ? (
                       <button disabled className='btn-peer-req'>Request Sent</button>
@@ -237,6 +242,7 @@ const Dashboard = () => {
                         Add Friend
                       </button>
                     )}
+                    </div>
                   </li>
                 ))}
               </ul>

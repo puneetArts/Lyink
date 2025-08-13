@@ -8,6 +8,7 @@ const Signup = () => {
     name: '', email: '', password: '', collegeId: ''
   });
   const [msg, setMsg] = useState('');
+  const [msgType, setMsgType] = useState('');
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/colleges")
@@ -19,12 +20,15 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMsg('');
+    setMsgType('');
     try {
       const res = await axios.post("http://localhost:5000/api/auth/signup", form);
       setMsg("Signup successful! You can now log in.");
+      setMsgType('success');
       setForm({ name: '', email: '', password: '', collegeId: '' });
     } catch (err) {
       setMsg(err.response?.data?.msg || "Error during signup");
+      setMsgType('error');
     }
   };
 
@@ -43,7 +47,8 @@ const Signup = () => {
         </select>
         <button type="submit">Signup</button>
       </form>
-      <p style={{color:"red"}}>{msg}</p>
+      <p style={{ color: msgType === 'success' ? 'green' : 'red' }}>{msg}</p>
+
       <a href="/login">Already have an account?</a><a href="/login">Login</a>
     </div>
     </div>

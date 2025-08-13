@@ -36,16 +36,17 @@ const FriendRequests = () => {
   return (
     <div>
       <Header/>
-      <div>
-        <h3>Friend Requests</h3>
+      <div className='main-body'>
+        <h3 >Friend Requests</h3>
         <div className='main-friend-req'>
       
       {requests.map(r => (
         <div key={r._id} className='friend-req'>
-          <strong>{r.name}</strong> ({r.email})
+          <div><strong>{r.name}</strong> <small>({r.email})</small></div>
           <div className='btn-acc-dec'>
-            <button onClick={() => handleAction(r._id, 'accept')}>Accept</button>
-            <button onClick={() => handleAction(r._id, 'decline')}>Decline</button>
+            <button className='btn1' 
+            onClick={() => handleAction(r._id, 'accept')}>Accept</button>
+            <button className='btn2'  onClick={() => handleAction(r._id, 'decline')}>Decline</button>
           </div>
         </div>
       ))}

@@ -1,3 +1,10 @@
+.main-body{
+  margin:5px 20px;
+  /* padding :5rem; */
+}
+.main-body h3{
+  margin : 10px 250px;
+}
 .friend-req{
   background: #2b4a5d;
   display: flex;
@@ -6,7 +13,7 @@
   padding: 0.8rem;
   max-width: 60%;
   align-items: center;
-  
+  border-radius: 0.3rem;
   
 }
 .btn-acc-dec{
@@ -18,4 +25,21 @@
   align-items: center;
   margin-left: 250px;
   border-radius: 0.8rem;
+  
+}
+.btn1{
+  background: #F79B72 ;
+  color: #1b263b;
+}
+.btn1:hover{
+  background: #ffffff ;
+  color: #2b4a5d;
+}
+.btn2{
+  background: #5e6163 ;
+  color: #ffffff;
+}
+.btn2:hover{
+  background: #ffffff ;
+  color: #2b4a5d;
 }

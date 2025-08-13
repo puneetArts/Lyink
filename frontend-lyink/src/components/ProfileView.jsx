@@ -6,7 +6,7 @@ import './ProfileView.css';  // in ProfileView.js
 import Header from './Header';
 import AchievementsList from './AchievementsList';
 import PostsList from './PostsList';
-
+import { LiaCertificateSolid } from "react-icons/lia";
 const ProfileView = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -52,53 +52,57 @@ const ProfileView = () => {
       <Header />
       <div className='profile-achieve'>
         <div
-        className="profile-view"
-        style={{
-          maxWidth: 500,
-          margin: '2rem auto',
-          padding: '1rem',
-          background: '#fff',
-          borderRadius: 8
-        }}
-      >
-        <h2>{profile.name}</h2>
+          className="profile-view"
+          style={{
+            maxWidth: 500,
+            margin: '2rem auto',
+            padding: '1rem',
+            background: '#fff',
+            borderRadius: "0.3rem"
+          }}
+        >
+          <h2>{profile.name}</h2>
 
-        <div className='pic-bio'>
-          {profile.profilePic && (
-            <img 
-              src={`http://localhost:5000${profile.profilePic}`}
+          <div className='pic-bio'>
+            <img
+              src={profile.profilePic ? `http://localhost:5000${profile.profilePic}` : '/default-avatar.jpg'}
               alt="Profile"
               style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover' }}
+              onError={e => {
+                e.target.onerror = null;  // Prevent infinite fallback loop
+                e.target.src = '/default-avatar.jpg';  // Fallback image path
+              }}
             />
+            <div className='bio'><p >{profile.bio}</p></div>
+          </div>
+
+          <p><b>Email:</b> {profile.email}</p>
+          <p><b>College:</b> {profile.college?.name}</p>
+          <p><b>Major:</b> {profile.major || 'N/A'}</p>
+          <p><b>Batch:</b> {profile.year || 'N/A'}</p>
+          <p><b>Interests:</b> {profile.interests && profile.interests.length ? profile.interests.join(', ') : 'N/A'}</p>
+
+          {/* Link to your own profile edit if viewing self */}
+          {profile && user && profile._id.toString() === user._id.toString() && (
+            <Link to="/edit-profile">Edit Profile</Link>
           )}
-          <div className='bio'><p >{profile.bio }</p></div>
+
+
         </div>
 
-        <p><b>Email:</b> {profile.email}</p>
-        <p><b>College:</b> {profile.college?.name}</p>
-        <p><b>Major:</b> {profile.major || 'N/A'}</p>
-        <p><b>Batch:</b> {profile.year || 'N/A'}</p>
-        <p><b>Interests:</b> {profile.interests && profile.interests.length ? profile.interests.join(', ') : 'N/A'}</p>
 
-        {/* Link to your own profile edit if viewing self */}
-        {profile && user && profile._id.toString() === user._id.toString() && (
-          <Link to="/edit-profile">Edit Profile</Link>
-        )}
-        
 
-      </div>
-      
-         
-       
       </div>
 
       <div className='achieve-post'>
-        
+
         <div className="post-view">
+          <h2>Posts</h2>
           {/* Posts Section */}
           <PostsList posts={posts} />
         </div>
-         <div className="achievment-view">
+        <div className="achievment-view">
+          <h2><span><LiaCertificateSolid className='icon' /></span></h2>
           {/* Achievements Section */}
           <AchievementsList achievements={achievements} />
         </div>

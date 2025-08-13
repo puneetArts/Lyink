@@ -1,6 +1,13 @@
 .dashboard{
   display: flex;
-  gap: 10px;
+  gap: 5px;
+  background: transparent;
+ 
+  
+          
+          
+          
+        
   
 }
 .my-profile-section {
@@ -12,11 +19,11 @@
   margin-bottom: 1.5rem;
   gap: 1.5rem;
 
-  width: 30%;
+  width: 350px;
   padding: 1.5rem;
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   margin: 1rem;
-  max-height: 50vh;
+  height: 350px;
 }
 
 .peer-section {
@@ -25,11 +32,11 @@
   justify-content: space-between;
   align-items: start;
   margin-bottom: 1.5rem;
-  gap: 1.5rem;
+  gap: 1rem;
   background: #2b4a5d;
-  width: 100%;
+  width: 350px;
   padding: 1.5rem;
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   margin: 0.5rem;
 }
 
@@ -43,6 +50,18 @@
   margin-top: 1rem;
   color: black
 }
+.btn-profile:hover {
+  background: white;
+}
+.btn-profile2 {
+  background: #F79B72;
+  border-radius: 0.8rem;
+  
+  color: black
+}
+.btn-profile2:hover {
+  background: white;
+}
 .btn-my-profile {
   display: flex;
   flex-direction: column;
@@ -54,17 +73,18 @@
 .btn-my-profile:hover {
   color: #fff;
 }
-.btn-profile:hover {
-  background: white;
-}
+
 
 .btn-add-friend {
   background: #F79B72;
   border-radius: 0.8rem;
   margin-top: 1rem;
   color: black;
-  width: 150px;
+  width: 100px;
 
+}
+.btn-add-friend:hover{
+  background: white;
 }
 .profile-dp {
   width: 80px;
@@ -75,16 +95,14 @@
   margin-bottom: 0.5rem;
   border: 2px solid #F79B72;
 }
-.btn-add-friend:hover{
-  background: white;
-}
+
 .btn-friends {
   background: transparent;
   /* border: 1px solid rgb(121, 178, 37); */
   border-radius: 0.8rem;
   margin-top: 1rem;
   color: rgb(121, 178, 37);
-  width: 150px;
+  width: 100px;
 
 }
 .btn-friends:hover{
@@ -97,7 +115,7 @@
   border-radius: 0.8rem;
   margin-top: 1rem;
   color: white;
-  width: 150px;
+  width: 130px;
 
 }
 .btn-peer-req:hover{
@@ -112,11 +130,11 @@
   align-items: center;
   gap: 3.5rem;
 }
-.college-feed{
+/* .college-feed{
   
-}
+} */
 .feed-section {
-  background: white;
+  background: transparent;
   
   display: flex;
   height: 100%;
@@ -130,17 +148,17 @@
   width: 100%;
   height: 100%;
   overflow: hidden; /* prevents child overflow */
-  background: #1b263b;
+  background: transparent;
 }
 
 /* Posts column */
 .post {
   flex: 4; /* main content gets more space */
-  width: 70%; /* prevent overflow */
+  width: 600px; /* prevent overflow */
   height: 100%;
  background: #2b4a5d;
-  border-radius: 8px;
-  padding: 5rem;
+  border-radius: 0.3rem;
+  padding: 3rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   overflow: auto;
 }

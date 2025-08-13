@@ -1,6 +1,6 @@
 import React from 'react';
 import './AchievementList.css'
-import { LiaCertificateSolid } from "react-icons/lia";
+
 import { Link } from 'react-router-dom';
 
 const AchievementsList = ({ achievements }) => {
@@ -8,15 +8,19 @@ const AchievementsList = ({ achievements }) => {
 
   return (
     <div className='achievement-list'>
-      <h2 >Achievements</h2>
+      {/* <h2 >Achievements</h2> */}
       {achievements.map(a => (
         <div key={a._id} className='achievements' >
-          <LiaCertificateSolid className='icon' /><strong style={{ marginBottom: "10px", color: "white" }}>{a.title} </strong >
-          <p style={{ marginBottom: "10px", color: "white" }}>{a.description}</p>
-          {a.certificate && <img src={`http://localhost:5000${a.certificate}`} alt="Certificate" style={{ maxWidth: '300px' }} />}
+          
+          <div className='content' style={{width:"400px", }}>
+            <small style={{color:"#a4a0a0"}}>
+            {a.date ? new Date(a.date).toLocaleDateString() : ''}
+          </small><br/><strong style={{ marginBottom: "10px", color: "white" }}>{a.title} </strong >
+          {/* <p style={{ marginBottom: "10px", color: "white" }}>{a.description}</p> */}
+          <br/>
           {a.user && (
             <small>
-              by{' '}
+              
               <Link
                 to={`/profile/${a.user._id}`}
                 style={{ color: '#F79B72', textDecoration: 'none' }}
@@ -26,10 +30,11 @@ const AchievementsList = ({ achievements }) => {
               </Link>
             </small>
           )}
+          </div>
+          <div style={{marginLeft:"4rem"}}>{a.certificate && <img  src={`http://localhost:5000${a.certificate}`} alt="Certificate" style={{ maxWidth: '100px',maxHeight: '100px' }} />}</div>
+          
           <br/>
-          <small style={{color:"#a4a0a0"}}>
-            {a.date ? new Date(a.date).toLocaleDateString() : ''}
-          </small>
+          
         </div>
       ))}
     </div>
