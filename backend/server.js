@@ -6,7 +6,15 @@ const path = require("path");
 const app = express();
 const collegeRoutes = require('./routes/colleges');
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // local dev
+    'https://lynx-app-five.vercel.app' // deployed frontend    process.env.FRONTEND_URL // production frontend
+
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 connectDB();
@@ -19,6 +27,9 @@ app.use("/api/users", require("./routes/users"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use('/api/achievements', require('./routes/achievements'));
 app.use('/api/posts', require('./routes/posts'));
+
+// app.use('/api/resumes', require('./routes/resumeRoutes')); // ✅ NEW
+
 
 // Seed colleges if none exist (optionally run only once)
 const College = require("./models/College");

@@ -122,3 +122,9 @@
   display: flex;
 
 }
+.resume{
+  justify-content: center;
+  max-width: 400px;
+  align-items: center;
+  margin-left: 15px;
+}

@@ -24,12 +24,13 @@ const AchievementForm = ({ onAdded }) => {
         formData.append('certificate', certificateFile);
       }
 
-      const res = await axios.post('http://localhost:5000/api/achievements', formData, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/achievements`, formData, {
+  headers: {
+    Authorization: `Bearer ${user.token}`,
+    'Content-Type': 'multipart/form-data'
+  }
+});
+
 
       setMsg('Achievement added!');
       setTitle('');

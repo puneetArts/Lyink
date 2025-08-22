@@ -31,7 +31,15 @@ const AchievementsList = ({ achievements }) => {
             </small>
           )}
           </div>
-          <div style={{marginLeft:"4rem"}}>{a.certificate && <img  src={`http://localhost:5000${a.certificate}`} alt="Certificate" style={{ maxWidth: '100px',maxHeight: '100px' }} />}</div>
+          <div style={{marginLeft:"4rem"}}><img
+  src={a.certificate}
+  alt="Certificate"
+  style={{ maxWidth: '100px', maxHeight: '100px' }}
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = '/default-certificate.jpg'; // fallback in /public
+  }}
+/></div>
           
           <br/>
           
